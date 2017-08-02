@@ -12,6 +12,8 @@ public class CrawlerMongoApplication implements CommandLineRunner {
 
 	@Autowired
 	private CrawlerRepository repository;
+	@Autowired
+	private HtmlItemRepository htmlItemRepository;
 	
 	public static void main(String[] args) {
 		SpringApplication.run(CrawlerMongoApplication.class, args);
@@ -20,7 +22,7 @@ public class CrawlerMongoApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		
-		SeedData seedData = new SeedData(repository);
+		SeedData seedData = new SeedData(repository, htmlItemRepository);
 		seedData.loadData();
 		
 		/* Uncomment to get some time to change file on ftp so crawler can detect changes - for initial testing purposes only!

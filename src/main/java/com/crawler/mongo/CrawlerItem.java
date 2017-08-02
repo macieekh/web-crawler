@@ -16,6 +16,18 @@ public abstract class CrawlerItem {
 	protected abstract boolean isCurrentHashEqualToPrevious();
 	
 	
+	public String getWebsite() {
+		return website;
+	}
+	public void setWebsite(String website) {
+		this.website = website;
+	}
+	public CrawlerItemHash getHash() {
+		return hash;
+	}
+	public void setHash(CrawlerItemHash hash) {
+		this.hash = hash;
+	}
 	
 	public boolean isHashEqual(String currentHash) {
 		if (this.hash.getHashValue().equals(currentHash)) {
