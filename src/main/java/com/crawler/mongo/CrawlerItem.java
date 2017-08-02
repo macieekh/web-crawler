@@ -4,7 +4,7 @@ import org.springframework.data.annotation.Id;
 
 
 public abstract class CrawlerItem {
-	
+	//test
 	@Id
     private String id;
 	protected String type;
