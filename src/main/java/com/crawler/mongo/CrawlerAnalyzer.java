@@ -7,11 +7,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 public class CrawlerAnalyzer {
 	
-	private CrawlerRepository repository;
+	private PdfItemRepository pdfItemRepository;
+	private HtmlItemRepository htmlItemRepository;
 	
 	@Autowired
-	public CrawlerAnalyzer(CrawlerRepository crawlerRepository) {
-		this.repository = crawlerRepository;
+	public CrawlerAnalyzer(PdfItemRepository pdfItemRepository, HtmlItemRepository htmlItemRepository) {
+		this.pdfItemRepository = pdfItemRepository;
+		this.htmlItemRepository = htmlItemRepository;		
 	}
 	
 	public void Analyze() {
@@ -19,18 +21,32 @@ public class CrawlerAnalyzer {
 		System.out.println("Performing web crawling and comparing hashes:");
 		System.out.println("---------------------------------------------");
 		
-		for (CrawlerItem item : repository.findAll()) {
+		for (HtmlItem item : htmlItemRepository.findAll()) {
 			item.getData();
 			if (!item.isCurrentHashEqualToPrevious()) {
 				item.setHash();
-				repository.save(item);
+				htmlItemRepository.save(item);
 			}
 		}
 		
 		System.out.println();
+		
+		
+		for (PdfItem item : pdfItemRepository.findAll()) {
+			item.getData();
+			if (!item.isCurrentHashEqualToPrevious()) {
+				item.setHash();
+				pdfItemRepository.save(item);
+			}
+		}
 	}
 	
+	
+	
+	
+	
 	//To be finished
+	/*
 	public void parallerAnalyze() {
 		System.out.println("---------------------------------------------");
 		System.out.println("Performing Analyze - Paraller version");
@@ -43,4 +59,5 @@ public class CrawlerAnalyzer {
 	    	item.isCurrentHashEqualToPrevious();
 	    });
 	}
+	*/
 }

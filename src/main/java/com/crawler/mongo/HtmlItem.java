@@ -2,14 +2,12 @@ package com.crawler.mongo;
 
 import org.springframework.data.annotation.Id;
 
-public class HtmlItem  {
+public class HtmlItem extends CrawlerItem {
 	
 	
 	@Id
     private String id;
-	protected String type;
 	protected String website;
-	protected CrawlerItemHash hash;
 	private String cssSelector;
 	    
 	
@@ -38,7 +36,7 @@ public class HtmlItem  {
 		this.hash = hash;
 	}
 	
-	public boolean isHashEqual(String currentHash) {
+	/*public boolean isHashEqual(String currentHash) {
 		if (this.hash.getHashValue().equals(currentHash)) {
 			System.out.println("nothing has changed - hashes equal \n");	
 			return true;
@@ -46,7 +44,7 @@ public class HtmlItem  {
 			System.out.println("there are some changes - check website/file \n");
 			return false;
 		}
-	}
+	}*/
     
     
     

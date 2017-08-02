@@ -1,8 +1,22 @@
 package com.crawler.mongo;
 
+import org.springframework.data.annotation.Id;
+
 public class PdfItem extends CrawlerItem {
 	
-    
+	//test
+	@Id
+    private String id;
+	protected String website;
+	
+	public String getWebsite() {
+		return website;
+	}
+
+	public void setWebsite(String website) {
+		this.website = website;
+	}
+
 	public PdfItem() {}
 
     public PdfItem(String website) {
