@@ -7,8 +7,9 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class SeedData {
-		
+	@Autowired 	
 	private PdfItemRepository pdfItemRepository;
+	@Autowired 
 	private HtmlItemRepository htmlItemRepository;
 
 	@Autowired

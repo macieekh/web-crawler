@@ -8,10 +8,15 @@ import org.springframework.stereotype.Service;
 @Service
 public class HtmlItemService {
 	@Autowired
-	private HtmlItemRepository repository;
+	private HtmlItemRepository htmlItemRepository;
 	
-	List<HtmlItem> getAllHtmlItems() {
-		return repository.findAll();
+	public List<HtmlItem> getAllHtmlItems() {
+		return htmlItemRepository.findAll();
+	}
+	
+	public void addHtmlItem(HtmlItem htmlItem) {
+		HtmlItem nnn = new HtmlItem(htmlItem.getWebsite(), htmlItem.getCssSelector());
+		htmlItemRepository.insert(nnn);
 	}
 }
 

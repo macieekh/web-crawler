@@ -2,11 +2,12 @@ package com.crawler.mongo;
 
 import org.springframework.data.annotation.Id;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 public class HtmlItem extends CrawlerItem {
 	
 	
-	@Id
-    private String id;
+	
 	protected String website;
 	private String cssSelector;
 	    
@@ -19,10 +20,7 @@ public class HtmlItem extends CrawlerItem {
         this.hash = generateHash(website, cssSelector); 
         
     }
-    
-    
-    /////////////////////////
-    
+        
     public String getWebsite() {
 		return website;
 	}
@@ -35,30 +33,11 @@ public class HtmlItem extends CrawlerItem {
 	public void setHash(CrawlerItemHash hash) {
 		this.hash = hash;
 	}
-	
-	/*public boolean isHashEqual(String currentHash) {
-		if (this.hash.getHashValue().equals(currentHash)) {
-			System.out.println("nothing has changed - hashes equal \n");	
-			return true;
-		} else {
-			System.out.println("there are some changes - check website/file \n");
-			return false;
-		}
-	}*/
-    
-    
-    
-    
-    
-    
-    
-    ///////////////////////
-    
+ 
     
     public String getCssSelector() {
 		return cssSelector;
 	}
-
     
     public void setHash() {
     	this.hash = generateHash(this.website, this.cssSelector);
@@ -69,8 +48,8 @@ public class HtmlItem extends CrawlerItem {
     	hash.setHashValue(website, cssSelector);
     	return hash;
     }
-
-
+    
+    @Override
 	public void getData() {
 		System.out.println("HTML ITEM");
 		System.out.println("website: " + this.website);
@@ -79,14 +58,13 @@ public class HtmlItem extends CrawlerItem {
 		System.out.println("hash date: " + this.hash.getDate().toString());
 	}
 	
-
+	@JsonIgnore
 	public boolean isCurrentHashEqualToPrevious() {
 		String currentHash = generateHash(this.website, this.cssSelector).getHashValue();
 		System.out.println("current HTML hash is: " + currentHash );
 		return isHashEqual(currentHash);
 	}
-
-
+	
 	
 
 }

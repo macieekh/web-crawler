@@ -2,12 +2,20 @@ package com.crawler.mongo;
 
 import org.springframework.data.annotation.Id;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 public class PdfItem extends CrawlerItem {
 	
-	//test
-	@Id
-    private String id;
+	
 	protected String website;
+	
+	public PdfItem() {}
+
+    public PdfItem(String website) {
+    	this.website = website;
+        this.hash = generateHash(website); 
+    	
+    }
 	
 	public String getWebsite() {
 		return website;
@@ -17,13 +25,7 @@ public class PdfItem extends CrawlerItem {
 		this.website = website;
 	}
 
-	public PdfItem() {}
-
-    public PdfItem(String website) {
-    	this.website = website;
-        this.hash = generateHash(website); 
-    	
-    }
+	
     
     public void setHash() {
     	this.hash = generateHash(this.website);
@@ -42,13 +44,14 @@ public class PdfItem extends CrawlerItem {
 		System.out.println("pdf item hash: " + this.hash.getHashValue().toString()); 
 	}
 
-	@Override
+	@JsonIgnore
 	public boolean isCurrentHashEqualToPrevious() {
 		String currentHash = generateHash(this.website).getHashValue();
 		System.out.println("current pdf hash is: " + currentHash);
 		return isHashEqual(currentHash);
 	}
-
+	
+	
 	
 
 }

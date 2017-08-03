@@ -35,12 +35,16 @@ public class CrawlerItemHash {
 			doc = Jsoup.connect(website).get();
 			selector = doc.select(cssSelector);
 			
-			String inputString = selector.text().toString();
-			System.out.println("selector text" + inputString);
-			
-			String md5Hash = HashGenerator.generateMD5(inputString);
-			System.out.println("MD5 Hash html: " + md5Hash);
-            this.hashValue = md5Hash;
+			if (!selector.isEmpty()) {
+				String inputString = selector.text().toString();
+				String md5Hash = HashGenerator.generateMD5(inputString);
+				System.out.println("selector text" + inputString);
+				System.out.println("MD5 Hash html: " + md5Hash);
+	            this.hashValue = md5Hash;
+			} else {
+				//ERROR Handling here
+				System.out.println("wrong css selector");
+			}
 		} catch (IOException | HashGenerationException ex) {
 			ex.printStackTrace();
 		} 

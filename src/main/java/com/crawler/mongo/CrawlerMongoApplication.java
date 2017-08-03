@@ -30,7 +30,7 @@ public class CrawlerMongoApplication implements CommandLineRunner {
 		System.in.read();*/
 		
 		CrawlerAnalyzer crawlerAnalyzer = new CrawlerAnalyzer(pdfItemRepository, htmlItemRepository);
-		crawlerAnalyzer.Analyze();
+		crawlerAnalyzer.analyze();
 
 
 	}
