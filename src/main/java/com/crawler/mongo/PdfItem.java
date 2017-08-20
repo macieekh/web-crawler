@@ -25,7 +25,6 @@ public class PdfItem extends CrawlerItem {
 		this.website = website;
 	}
 
-	
     
     public void setHash() {
     	this.hash = generateHash(this.website);

@@ -14,9 +14,18 @@ public class HtmlItemService {
 		return htmlItemRepository.findAll();
 	}
 	
-	public void addHtmlItem(HtmlItem htmlItem) {
-		HtmlItem nnn = new HtmlItem(htmlItem.getWebsite(), htmlItem.getCssSelector());
-		htmlItemRepository.insert(nnn);
+	public HtmlItem findOne(String id) {
+		return htmlItemRepository.findOne(id);
 	}
+	
+	public void deleteById(String id) {
+		htmlItemRepository.delete(id);
+	}
+	
+	public void addHtmlItem(HtmlItem htmlItem) {
+		HtmlItem newItem = new HtmlItem(htmlItem.getWebsite(), htmlItem.getCssSelector());
+		htmlItemRepository.insert(newItem);
+	}
+	
 }
 
